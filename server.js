@@ -17,6 +17,16 @@ app.get('/', function(rec, res){
   res.render('index');
 });
 
+app.get('/signup', function(rec, res){
+  //respuesta para la ruta / renderizar el index.pug
+  res.render('index');
+});
+
+app.get('/signin', function(rec, res){
+  //respuesta para la ruta / renderizar el index.pug
+  res.render('index');
+});
+
 /**
  * lanzar servidor web
  */

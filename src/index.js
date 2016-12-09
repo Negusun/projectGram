@@ -1,11 +1,12 @@
-var nums = [123, 35445, 67, 34, 2235, 23, 2];
+var page = require('page');
+var main = $('#main-container');
 
-//el javascript de siempre
-var numsMas1 = nums.map(function (numero){
-  return numero + 1;
+page('/', function(ctx, next){//dos parametros context y next
+  main.html('home <a href="/signup">Signup</a>'); //home
 });
 
-//ECMAScript6
-var numsMas1 = nums.map(n => n+1);
+page('/signup', function(ctx, next){
+  main.html('signup <a href="/">Home</a>'); //signup
+});
 
-console.log(numsMas1);
+page();
