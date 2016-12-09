@@ -1,2 +1,2 @@
 # projectGram
-Single Page Application usando JavaScript
+Single Page Application usando Node.js y JavaScript
