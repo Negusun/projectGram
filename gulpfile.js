@@ -14,4 +14,9 @@ gulp.task('styles', function(){
     .pipe(gulp.dest('public'));
 });
 
-gulp.task('default', ['styles']);
+gulp.task('assets', function(){
+  gulp.src('assets/*')//glob expresiones regulares para apuntar archivos
+  .pipe(gulp.dest('public'));
+});
+
+gulp.task('default', ['styles', 'assets']);
