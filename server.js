@@ -4,7 +4,8 @@ var app = express();
 
 //setiar el motor de vistas pug para que renderice el html
 app.set('view engine', 'pug');
-
+//definir un nuevo middleware para servir el directorio public de manera estatica
+app.use(express.static('public'));
 /**
  * primer parametro ruta
  * segundo parametro una funcion que resibe dos parametros
