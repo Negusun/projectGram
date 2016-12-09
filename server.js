@@ -14,17 +14,17 @@ app.use(express.static('public'));
  */
 app.get('/', function(rec, res){
   //respuesta para la ruta / renderizar el index.pug
-  res.render('index');
+  res.render('index', {title: 'Gram - Home'});
 });
 
 app.get('/signup', function(rec, res){
   //respuesta para la ruta / renderizar el index.pug
-  res.render('index');
+  res.render('index', {title: 'Gram - Sign Up'});
 });
 
 app.get('/signin', function(rec, res){
   //respuesta para la ruta / renderizar el index.pug
-  res.render('index');
+  res.render('index', {title: 'Gram - Sign In'});
 });
 
 /**

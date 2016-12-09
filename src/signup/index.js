@@ -3,8 +3,10 @@
  */
 var page = require('page');
 var main = $('#main-container');
-var template = require('./template')
+var template = require('./template');
+var title = require('title');
 
 page('/signup', function(ctx, next){
+  title('Gram - Sign Up');
   main.empty().append(template);
 });
