@@ -1,0 +1,25 @@
+html
+  head
+    title Gram
+    meta(name='viewport' content='width=device-width, initial-scale=1.0')
+    meta(charset='utf-8')
+    link(href='https://fonts.googleapis.com/css?family=Montserrat|Oleo+Script' rel='stylesheet')
+    link(rel='stylesheet' href='public/app.css')
+  body
+    section#main-container
+    footer.site-footer
+      .container
+        .row
+          .col.s12.l3.center-align
+            a.dropdown-button.btn(href='#', data-activates='idiomas') Idiomas
+            ul#idiomas.dropdown-content
+              li
+                a(href='#!') Español
+              li
+                a(href='#!') Ingles
+          .col.s12.l3.push-l6.center-align
+            | © Gram 2016
+    // Compiled and minified JavaScript jquery
+    script(src='https://code.jquery.com/jquery-3.1.1.min.js')
+    // Compiled and minified JavaScript materialize-css
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js')

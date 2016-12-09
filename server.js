@@ -2,13 +2,17 @@
 var express = require('express');
 var app = express();
 
+//setiar el motor de vistas pug para que renderice el html
+app.set('view engine', 'pug');
+
 /**
  * primer parametro ruta
  * segundo parametro una funcion que resibe dos parametros
  * uno de respuesta y otro de requerimiento
  */
 app.get('/', function(rec, res){
-  res.send('Hola mundo');
+  //respuesta para la ruta / renderizar el index.pug
+  res.render('index');
 });
 
 /**
