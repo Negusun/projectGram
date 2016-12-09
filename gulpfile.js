@@ -38,6 +38,7 @@ function compile(watch){
     bundle
       .transform(babel)//para que los navegadores soporten ECMAScript6
       .bundle()//genera el bundle de browserify
+      .on('error', function(err){ console.log(err); this.emit(end)  })
       .pipe(source('index.js'))//con viny-source se transforma a un archivo que entiende gulp
       .pipe(rename('app.js'))//se renombra el archivo
       .pipe(gulp.dest('public'));//se envia a el destino en public
