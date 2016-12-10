@@ -2533,24 +2533,65 @@ var title = require('title');
 
 page('/', function (ctx, next) {
   title('Gram - Home');
-  main.empty().append(template);
+
+  var pictures = [{
+    'user': {
+      'username': 'Negusun',
+      'avatar': 'https://instagram.fscl8-1.fna.fbcdn.net/t51.2885-19/s150x150/15258639_149039972244650_5598047879546535936_a.jpg'
+    },
+    'url': 'office.jpg',
+    'likes': 23,
+    'liked': true
+  }, {
+    'user': {
+      'username': 'Negusun',
+      'avatar': 'https://instagram.fscl8-1.fna.fbcdn.net/t51.2885-19/s150x150/15258639_149039972244650_5598047879546535936_a.jpg'
+    },
+    'url': 'office.jpg',
+    'likes': 6,
+    'liked': true
+  }, {
+    'user': {
+      'username': 'Negusun',
+      'avatar': 'https://instagram.fscl8-1.fna.fbcdn.net/t51.2885-19/s150x150/15258639_149039972244650_5598047879546535936_a.jpg'
+    },
+    'url': 'office.jpg',
+    'likes': 5,
+    'liked': true
+  }, {
+    'user': {
+      'username': 'Negusun',
+      'avatar': 'https://instagram.fscl8-1.fna.fbcdn.net/t51.2885-19/s150x150/15258639_149039972244650_5598047879546535936_a.jpg'
+    },
+    'url': 'office.jpg',
+    'likes': 34,
+    'liked': true
+  }];
+
+  main.empty().append(template(pictures));
 });
 
 },{"./template":17,"page":10,"title":13}],17:[function(require,module,exports){
 var yo = require('yo-yo');
 var layout = require('../layout');
+var picture = require('../picture-card');
 
-var template = yo`<div class="container timeline">
+module.exports = function (pics) {
+  var el = yo`<div class="container timeline">
     <div class="row">
       <div class="col s12 m10 offset-m1 l6 offset-l3">
+        ${ pics.map(function (pic) {
+    return picture(pic);
+  }) }
       </div>
     </div>
   </div>`;
+  return layout(el);
+};
 
 //se va a exportar el layout con todo el header mas lo que tenga content para ser mostrado por el index.js en la ruta
-module.exports = layout(template);
 
-},{"../layout":20,"yo-yo":14}],18:[function(require,module,exports){
+},{"../layout":20,"../picture-card":21,"yo-yo":14}],18:[function(require,module,exports){
 /**
  * Inicializar page y hacer require de los modulos
  */
@@ -2562,7 +2603,7 @@ require('./signin');
 
 page();
 
-},{"./homepage":16,"./signin":21,"./signup":23,"page":10}],19:[function(require,module,exports){
+},{"./homepage":16,"./signin":22,"./signup":24,"page":10}],19:[function(require,module,exports){
 var yo = require('yo-yo');
 
 module.exports = function landing(box) {
@@ -2612,6 +2653,30 @@ module.exports = function layout(content) {
 };
 
 },{"yo-yo":14}],21:[function(require,module,exports){
+var yo = require('yo-yo');
+
+module.exports = function (pic) {
+  return yo`<div class="card">
+    <div class="card-image">
+      <img class="activator" src="${ pic.url }">
+    </div>
+    <div class="card-content">
+      <a href="/user/${ pic.user.username }" class="card-title">
+        <img src="${ pic.user.avatar }" class="avatar" />
+        <span class="username">${ pic.user.username }</span>
+      </a>
+      <small class="right time">Hace 1 año</small>
+      <p>
+        <a class="left" href="#">
+          <i class="fa fa-heart-o" aria-hidden="true"></i>
+        </a>
+        <span class="left likes">${ pic.likes } me gusta</span>
+      </p>
+    </div>
+  </div>`;
+};
+
+},{"yo-yo":14}],22:[function(require,module,exports){
 /**
  * Index.js se encarga de la ruta
  */
@@ -2625,7 +2690,7 @@ page('/signin', function (ctx, next) {
   main.empty().append(template);
 });
 
-},{"./template":22,"page":10,"title":13}],22:[function(require,module,exports){
+},{"./template":23,"page":10,"title":13}],23:[function(require,module,exports){
 /**
  * Se exporta el html que se mostrara
  */
@@ -2659,7 +2724,7 @@ box = yo`<div class="col s12 m7">
 
 module.exports = landing(box);
 
-},{"../landing":19,"yo-yo":14}],23:[function(require,module,exports){
+},{"../landing":19,"yo-yo":14}],24:[function(require,module,exports){
 /**
  * Index.js se encarga de la ruta
  */
@@ -2673,7 +2738,7 @@ page('/signup', function (ctx, next) {
   main.empty().append(template);
 });
 
-},{"./template":24,"page":10,"title":13}],24:[function(require,module,exports){
+},{"./template":25,"page":10,"title":13}],25:[function(require,module,exports){
 /**
  * Se exporta el html que se mostrara
  */
