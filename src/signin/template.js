@@ -11,7 +11,7 @@ box = yo`<div class="col s12 m7">
        <form class="signup-form">
          <div class="section">
           <a href="#" class="btn btn-fb hide-on-small-only">Iniciar sesion con facebook</a>
-          <a href="#" class="btn btn-fb hide-on-med-and-up">Iniciar sesion</a>
+          <a href="#" class="btn btn-fb hide-on-med-and-up"><i class="fa fa-facebook-official" aria-hidden="true"></i> Iniciar sesion</a>
          </div>
          <div class="divider"></div>
          <div class="section">

@@ -2538,9 +2538,19 @@ page('/', function (ctx, next) {
 
 },{"./template":17,"page":10,"title":13}],17:[function(require,module,exports){
 var yo = require('yo-yo');
-module.exports = yo`<a href="/signup">Signup</a>`;
+var layout = require('../layout');
 
-},{"yo-yo":14}],18:[function(require,module,exports){
+var template = yo`<div class="container timeline">
+    <div class="row">
+      <div class="col s12 m10 offset-m1 l6 offset-l3">
+      </div>
+    </div>
+  </div>`;
+
+//se va a exportar el layout con todo el header mas lo que tenga content para ser mostrado por el index.js en la ruta
+module.exports = layout(template);
+
+},{"../layout":20,"yo-yo":14}],18:[function(require,module,exports){
 /**
  * Inicializar page y hacer require de los modulos
  */
@@ -2552,11 +2562,11 @@ require('./signin');
 
 page();
 
-},{"./homepage":16,"./signin":20,"./signup":22,"page":10}],19:[function(require,module,exports){
+},{"./homepage":16,"./signin":21,"./signup":23,"page":10}],19:[function(require,module,exports){
 var yo = require('yo-yo');
 
 module.exports = function landing(box) {
-  return yo`<div class="conteiner">
+  return yo`<div class="conteiner landing">
     <div class="row">
        <div class="col s10 push-s1">
          <div class="row">
@@ -2571,6 +2581,37 @@ module.exports = function landing(box) {
 };
 
 },{"yo-yo":14}],20:[function(require,module,exports){
+var yo = require('yo-yo');
+
+module.exports = function layout(content) {
+  //yo-yo no maneja mas de un elemento asi que se envuelve todo en un div
+  return yo`<div>
+      <nav class="header">
+        <div class="nav-wrapper">
+          <div class="container">
+            <div class="row">
+              <div class="col s12 m6 offset-m1">
+                <a href="#" class="brand-logo gram">Gram</a>
+              </div>
+              <div class="col s2 m6 push-s10 push-m10">
+                <a href="" class="btn btn-large btn-flat dropdown-button" data-activates="drop-user">
+                  <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                </a>
+                <ul id="drop-user" class="dropdown-content">
+                  <li><a href="#">Salir</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="content">
+        ${ content }
+      </div>
+    </div>`;
+};
+
+},{"yo-yo":14}],21:[function(require,module,exports){
 /**
  * Index.js se encarga de la ruta
  */
@@ -2584,7 +2625,7 @@ page('/signin', function (ctx, next) {
   main.empty().append(template);
 });
 
-},{"./template":21,"page":10,"title":13}],21:[function(require,module,exports){
+},{"./template":22,"page":10,"title":13}],22:[function(require,module,exports){
 /**
  * Se exporta el html que se mostrara
  */
@@ -2598,7 +2639,7 @@ box = yo`<div class="col s12 m7">
        <form class="signup-form">
          <div class="section">
           <a href="#" class="btn btn-fb hide-on-small-only">Iniciar sesion con facebook</a>
-          <a href="#" class="btn btn-fb hide-on-med-and-up">Iniciar sesion</a>
+          <a href="#" class="btn btn-fb hide-on-med-and-up"><i class="fa fa-facebook-official" aria-hidden="true"></i> Iniciar sesion</a>
          </div>
          <div class="divider"></div>
          <div class="section">
@@ -2618,7 +2659,7 @@ box = yo`<div class="col s12 m7">
 
 module.exports = landing(box);
 
-},{"../landing":19,"yo-yo":14}],22:[function(require,module,exports){
+},{"../landing":19,"yo-yo":14}],23:[function(require,module,exports){
 /**
  * Index.js se encarga de la ruta
  */
@@ -2632,7 +2673,7 @@ page('/signup', function (ctx, next) {
   main.empty().append(template);
 });
 
-},{"./template":23,"page":10,"title":13}],23:[function(require,module,exports){
+},{"./template":24,"page":10,"title":13}],24:[function(require,module,exports){
 /**
  * Se exporta el html que se mostrara
  */
@@ -2647,7 +2688,7 @@ box = yo` <div class="col s12 m7">
          <h2>Registrate para ver fotos de tus amigos en Gram</h2>
          <div class="section">
           <a href="#" class="btn btn-fb hide-on-small-only">Iniciar sesion con facebook</a>
-          <a href="#" class="btn btn-fb hide-on-med-and-up">Iniciar sesion</a>
+          <a href="#" class="btn btn-fb hide-on-med-and-up"><i class="fa fa-facebook-official" aria-hidden="true"></i> Iniciar sesion</a>
          </div>
          <div class="divider"></div>
          <div class="section">
