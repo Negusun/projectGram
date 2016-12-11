@@ -17,7 +17,8 @@ page('/', function(ctx, next){
       },
       'url': 'office.jpg',
       'likes': 1,
-      'liked': true
+      'liked': true,
+      'createdAt': new Date()
     },
     {
       'user': {
@@ -26,7 +27,8 @@ page('/', function(ctx, next){
       },
       'url': 'office.jpg',
       'likes': 0,
-      'liked': false
+      'liked': false,
+      'createdAt': new Date().setDate(new Date().getDate()-10)
     },
     {
       'user': {
@@ -35,7 +37,8 @@ page('/', function(ctx, next){
       },
       'url': 'office.jpg',
       'likes': 5,
-      'liked': true
+      'liked': true,
+      'createdAt': new Date(new Date().getDate()-5)
     },
     {
       'user': {
@@ -44,7 +47,8 @@ page('/', function(ctx, next){
       },
       'url': 'office.jpg',
       'likes': 34,
-      'liked': true
+      'liked': true,
+      'createdAt': new Date(new Date().getDate()-13)
     }
   ];
 
