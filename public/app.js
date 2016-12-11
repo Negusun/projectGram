@@ -2540,7 +2540,7 @@ page('/', function (ctx, next) {
       'avatar': 'https://instagram.fscl8-1.fna.fbcdn.net/t51.2885-19/s150x150/15258639_149039972244650_5598047879546535936_a.jpg'
     },
     'url': 'office.jpg',
-    'likes': 23,
+    'likes': 1,
     'liked': true
   }, {
     'user': {
@@ -2548,8 +2548,8 @@ page('/', function (ctx, next) {
       'avatar': 'https://instagram.fscl8-1.fna.fbcdn.net/t51.2885-19/s150x150/15258639_149039972244650_5598047879546535936_a.jpg'
     },
     'url': 'office.jpg',
-    'likes': 6,
-    'liked': true
+    'likes': 0,
+    'liked': false
   }, {
     'user': {
       'username': 'Negusun',
@@ -2655,25 +2655,59 @@ module.exports = function layout(content) {
 },{"yo-yo":14}],21:[function(require,module,exports){
 var yo = require('yo-yo');
 
-module.exports = function (pic) {
-  return yo`<div class="card">
-    <div class="card-image">
-      <img class="activator" src="${ pic.url }">
-    </div>
-    <div class="card-content">
-      <a href="/user/${ pic.user.username }" class="card-title">
-        <img src="${ pic.user.avatar }" class="avatar" />
-        <span class="username">${ pic.user.username }</span>
-      </a>
-      <small class="right time">Hace 1 año</small>
-      <p>
-        <a class="left" href="#">
-          <i class="fa fa-heart-o" aria-hidden="true"></i>
+function text(pic) {
+  if (pic.liked & pic.likes > 1) {
+    return 'A ti y a ' + (pic.likes - 1) + ' personas les gusta esto';
+  } else if (pic.liked & pic.likes == 2) {
+    return 'A ti y a una persona mas les gusta esto';
+  } else if (pic.liked & pic.likes == 1) {
+    return 'Te gusta';
+  } else if (!pic.liked & pic.likes > 1) {
+    return 'A ' + pic.likes + ' personas les gusta esto';
+  } else if (!pic.liked & pic.likes <= 0) {
+    return 'Aun a nadie le gusta esto';
+  } else {
+    return 'A ' + pic.likes + '  gusta esto';
+  }
+}
+
+module.exports = function pictureCard(pic) {
+  var el;
+  function render(picture) {
+    //si liked es true se pone la clase liked
+    return yo`<div class="card ${ picture.liked ? 'liked' : '' }">
+      <div class="card-image">
+        <img class="activator" src="${ picture.url }">
+      </div>
+      <div class="card-content">
+        <a href="/user/${ picture.user.username }" class="card-title">
+          <img src="${ picture.user.avatar }" class="avatar" />
+          <span class="username">${ picture.user.username }</span>
         </a>
-        <span class="left likes">${ pic.likes } me gusta</span>
-      </p>
-    </div>
-  </div>`;
+        <small class="right time">Hace 1 año</small>
+        <p>
+          <a class="left" href="#" onclick=${ like.bind(null, true) }>
+            <i class="fa fa-heart-o" aria-hidden="true"></i>
+          </a>
+          <a class="left" href="#" onclick=${ like.bind(null, false) }>
+            <i class="fa fa-heart" aria-hidden="true"></i>
+          </a>
+          <span class="left likes">${ text(picture) }</span>
+        </p>
+      </div>
+    </div>`;
+  }
+
+  function like(liked) {
+    pic.liked = liked;
+    pic.likes += pic.liked ? 1 : -1;
+    var newEl = render(pic);
+    yo.update(el, newEl);
+    return false;
+  }
+
+  el = render(pic); //el elemente incial
+  return el;
 };
 
 },{"yo-yo":14}],22:[function(require,module,exports){

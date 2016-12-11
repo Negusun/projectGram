@@ -16,7 +16,7 @@ page('/', function(ctx, next){
         'avatar': 'https://instagram.fscl8-1.fna.fbcdn.net/t51.2885-19/s150x150/15258639_149039972244650_5598047879546535936_a.jpg'
       },
       'url': 'office.jpg',
-      'likes': 23,
+      'likes': 1,
       'liked': true
     },
     {
@@ -25,8 +25,8 @@ page('/', function(ctx, next){
         'avatar': 'https://instagram.fscl8-1.fna.fbcdn.net/t51.2885-19/s150x150/15258639_149039972244650_5598047879546535936_a.jpg'
       },
       'url': 'office.jpg',
-      'likes': 6,
-      'liked': true
+      'likes': 0,
+      'liked': false
     },
     {
       'user': {

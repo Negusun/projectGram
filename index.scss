@@ -106,3 +106,17 @@ $avatar-size: 48px;
 .card .username{
   color: $secondary-color;
 }
+
+.card .fa-heart {
+  color: #F44336;
+  display: none;
+}
+
+.card.liked{
+  .fa-heart-o{
+    display: none;
+  }
+  .fa-heart{
+    display: block;
+  }
+}
