@@ -9345,6 +9345,32 @@ module.exports = [
 ]
 
 },{}],42:[function(require,module,exports){
+var yo = require('yo-yo');
+var translate = require('../translate');
+
+var el = yo`<footer class="site-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col s12 l3 center-align"><a href="#" data-activates="idiomas" class="dropdown-button btn">${ translate.message('language') }</a>
+        <ul id="idiomas" class="dropdown-content">
+          <li><a href="#" onclick=${ lang.bind(null, 'es') }>${ translate.message('spanish') }</a></li>
+          <li><a href="#" onclick=${ lang.bind(null, 'en') }>${ translate.message('english') }</a></li>
+        </ul>
+      </div>
+      <div class="col s12 l3 push-l6 center-align">© Gram 2016</div>
+    </div>
+  </div>
+</footer>`;
+
+function lang(locale) {
+  localStorage.locale = locale;
+  location.reload();
+  return false;
+}
+
+document.body.append(el);
+
+},{"../translate":55,"yo-yo":40}],43:[function(require,module,exports){
 /**
  * Index.js se encarga de la ruta
  */
@@ -9397,7 +9423,7 @@ page('/', function (ctx, next) {
   main.empty().append(template(pictures));
 });
 
-},{"./template":43,"page":36,"title":39}],43:[function(require,module,exports){
+},{"./template":44,"page":36,"title":39}],44:[function(require,module,exports){
 var yo = require('yo-yo');
 var layout = require('../layout');
 var picture = require('../picture-card');
@@ -9417,7 +9443,7 @@ module.exports = function (pics) {
 
 //se va a exportar el layout con todo el header mas lo que tenga content para ser mostrado por el index.js en la ruta
 
-},{"../layout":46,"../picture-card":47,"yo-yo":40}],44:[function(require,module,exports){
+},{"../layout":47,"../picture-card":48,"yo-yo":40}],45:[function(require,module,exports){
 /**
  * Inicializar page y hacer require de los modulos
  */
@@ -9429,10 +9455,11 @@ moment.locale('es');*/
 require('./homepage');
 require('./signup');
 require('./signin');
+require('./footer');
 
 page();
 
-},{"./homepage":42,"./signin":48,"./signup":50,"page":36}],45:[function(require,module,exports){
+},{"./footer":42,"./homepage":43,"./signin":49,"./signup":51,"page":36}],46:[function(require,module,exports){
 var yo = require('yo-yo');
 
 module.exports = function landing(box) {
@@ -9450,8 +9477,9 @@ module.exports = function landing(box) {
   </div>`;
 };
 
-},{"yo-yo":40}],46:[function(require,module,exports){
+},{"yo-yo":40}],47:[function(require,module,exports){
 var yo = require('yo-yo');
+var translate = require('../translate');
 
 module.exports = function layout(content) {
   //yo-yo no maneja mas de un elemento asi que se envuelve todo en un div
@@ -9481,7 +9509,7 @@ module.exports = function layout(content) {
     </div>`;
 };
 
-},{"yo-yo":40}],47:[function(require,module,exports){
+},{"../translate":55,"yo-yo":40}],48:[function(require,module,exports){
 var yo = require('yo-yo');
 var translate = require('../translate'); //format.js
 
@@ -9524,7 +9552,7 @@ module.exports = function pictureCard(pic) {
   return el;
 };
 
-},{"../translate":54,"yo-yo":40}],48:[function(require,module,exports){
+},{"../translate":55,"yo-yo":40}],49:[function(require,module,exports){
 /**
  * Index.js se encarga de la ruta
  */
@@ -9538,7 +9566,7 @@ page('/signin', function (ctx, next) {
   main.empty().append(template);
 });
 
-},{"./template":49,"page":36,"title":39}],49:[function(require,module,exports){
+},{"./template":50,"page":36,"title":39}],50:[function(require,module,exports){
 /**
  * Se exporta el html que se mostrara
  */
@@ -9552,28 +9580,28 @@ box = yo`<div class="col s12 m7">
        <h1 class="gram">Gram</h1>
        <form class="signup-form">
          <div class="section">
-          <a href="#" class="btn btn-fb hide-on-small-only">${ translate.message('singin.facebook') }</a>
-          <a href="#" class="btn btn-fb hide-on-med-and-up"><i class="fa fa-facebook-official" aria-hidden="true"></i> ${ translate.message('signin.text') }</a>
+          <a href="#" class="btn btn-fb hide-on-small-only">${ translate.message('signup.facebook') }</a>
+          <a href="#" class="btn btn-fb hide-on-med-and-up"><i class="fa fa-facebook-official" aria-hidden="true"></i> ${ translate.message('signup.text') }</a>
          </div>
          <div class="divider"></div>
          <div class="section">
            <input type="text" name="username" placeholder="${ translate.message('username') }">
            <input type="password" name="password" placeholder="${ translate.message('password') }">
-           <button type="submit" class="btn waves-effect waves-light btn-signup">${ translate.message('signin.text') }</button>
+           <button type="submit" class="btn waves-effect waves-light btn-signup">${ translate.message('signup.text') }</button>
          </div>
        </form>
      </div>
    </div>
    <div class="row">
      <div class="login-box">
-       ${ translate.message('signup.not-have-account') } <a href="/signup">${ translate.message('signin.call-to-action') }</a>
+       ${ translate.message('signin.not-have-account') } <a href="/signup">${ translate.message('signup.call-to-action') }</a>
      </div>
    </div>
  </div>`;
 
 module.exports = landing(box);
 
-},{"../landing":45,"../translate":54,"yo-yo":40}],50:[function(require,module,exports){
+},{"../landing":46,"../translate":55,"yo-yo":40}],51:[function(require,module,exports){
 /**
  * Index.js se encarga de la ruta
  */
@@ -9587,7 +9615,7 @@ page('/signup', function (ctx, next) {
   main.empty().append(template);
 });
 
-},{"./template":51,"page":36,"title":39}],51:[function(require,module,exports){
+},{"./template":52,"page":36,"title":39}],52:[function(require,module,exports){
 /**
  * Se exporta el html que se mostrara
  */
@@ -9625,7 +9653,7 @@ box = yo` <div class="col s12 m7">
 
 module.exports = landing(box);
 
-},{"../landing":45,"../translate":54,"yo-yo":40}],52:[function(require,module,exports){
+},{"../landing":46,"../translate":55,"yo-yo":40}],53:[function(require,module,exports){
 module.exports = {
   'likes': '{likes, plural, ' + '=1 {# like}' + 'other {# likes}}',
   'logout': 'Logout',
@@ -9645,7 +9673,7 @@ module.exports = {
   'language': 'Language'
 };
 
-},{}],53:[function(require,module,exports){
+},{}],54:[function(require,module,exports){
 module.exports = {
   'likes': '{likes, number} me gusta',
   'logout': 'Salir',
@@ -9665,7 +9693,7 @@ module.exports = {
   'language': 'Idioma'
 };
 
-},{}],54:[function(require,module,exports){
+},{}],55:[function(require,module,exports){
 /*var moment = require('moment');*/
 if (!window.Intl) {
   //si Intl no esta definido en el objeto global va a requerir la libreria (safari)
@@ -9686,7 +9714,7 @@ var MESSAGES = {};
 MESSAGES.es = es;
 MESSAGES.en = en;
 
-var locale = 'es';
+var locale = localStorage.locale || 'es'; //si no existe la variable en el local storage se asigna español por defecto
 
 module.exports = {
   'message': function (text, opts) {
@@ -9697,4 +9725,4 @@ module.exports = {
   'date': new IntlRelativeFormat(locale)
 };
 
-},{"./en":52,"./es":53,"Intl":1,"intl-messageFormat":9,"intl-relativeformat":26,"intl-relativeformat/dist/locale-data/es.js":25,"intl/locale-data/jsonp/es.js":32}]},{},[44]);
+},{"./en":53,"./es":54,"Intl":1,"intl-messageFormat":9,"intl-relativeformat":26,"intl-relativeformat/dist/locale-data/es.js":25,"intl/locale-data/jsonp/es.js":32}]},{},[45]);

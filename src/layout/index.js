@@ -1,4 +1,5 @@
 var yo = require('yo-yo');
+var translate = require('../translate');
 
 module.exports = function layout(content) {
   //yo-yo no maneja mas de un elemento asi que se envuelve todo en un div

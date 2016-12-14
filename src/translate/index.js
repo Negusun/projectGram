@@ -18,7 +18,7 @@ var MESSAGES = {};
 MESSAGES.es = es;
 MESSAGES.en = en;
 
-var locale = 'es';
+var locale = localStorage.locale || 'es'; //si no existe la variable en el local storage se asigna español por defecto
 
 module.exports = {
   'message': function(text, opts){
