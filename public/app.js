@@ -9468,7 +9468,7 @@ module.exports = function layout(content) {
                   <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                 </a>
                 <ul id="drop-user" class="dropdown-content">
-                  <li><a href="#">Salir</a></li>
+                  <li><a href="#">${ translate.message('logout') }</a></li>
                 </ul>
               </div>
             </div>
@@ -9544,6 +9544,7 @@ page('/signin', function (ctx, next) {
  */
 var yo = require('yo-yo');
 var landing = require('../landing');
+var translate = require('../translate');
 
 box = yo`<div class="col s12 m7">
    <div class="row">
@@ -9551,28 +9552,28 @@ box = yo`<div class="col s12 m7">
        <h1 class="gram">Gram</h1>
        <form class="signup-form">
          <div class="section">
-          <a href="#" class="btn btn-fb hide-on-small-only">Iniciar sesion con facebook</a>
-          <a href="#" class="btn btn-fb hide-on-med-and-up"><i class="fa fa-facebook-official" aria-hidden="true"></i> Iniciar sesion</a>
+          <a href="#" class="btn btn-fb hide-on-small-only">${ translate.message('singin.facebook') }</a>
+          <a href="#" class="btn btn-fb hide-on-med-and-up"><i class="fa fa-facebook-official" aria-hidden="true"></i> ${ translate.message('signin.text') }</a>
          </div>
          <div class="divider"></div>
          <div class="section">
-           <input type="text" name="username" placeholder="Nombre de Usuario">
-           <input type="password" name="password" placeholder="Contraseña">
-           <button type="submit" class="btn waves-effect waves-light btn-signup">Inicia Sesion</button>
+           <input type="text" name="username" placeholder="${ translate.message('username') }">
+           <input type="password" name="password" placeholder="${ translate.message('password') }">
+           <button type="submit" class="btn waves-effect waves-light btn-signup">${ translate.message('signin.text') }</button>
          </div>
        </form>
      </div>
    </div>
    <div class="row">
      <div class="login-box">
-       ¿No Tienes una cuenta? <a href="/signup">Registrate</a>
+       ${ translate.message('signup.not-have-account') } <a href="/signup">${ translate.message('signin.call-to-action') }</a>
      </div>
    </div>
  </div>`;
 
 module.exports = landing(box);
 
-},{"../landing":45,"yo-yo":40}],50:[function(require,module,exports){
+},{"../landing":45,"../translate":54,"yo-yo":40}],50:[function(require,module,exports){
 /**
  * Index.js se encarga de la ruta
  */
@@ -9592,45 +9593,76 @@ page('/signup', function (ctx, next) {
  */
 var yo = require('yo-yo');
 var landing = require('../landing');
+var translate = require('../translate');
 
 box = yo` <div class="col s12 m7">
    <div class="row">
      <div class="signup-box">
        <h1 class="gram">Gram</h1>
        <form class="signup-form">
-         <h2>Registrate para ver fotos de tus amigos en Gram</h2>
+         <h2>${ translate.message('signup.subheading') }</h2>
          <div class="section">
-          <a href="#" class="btn btn-fb hide-on-small-only">Iniciar sesion con facebook</a>
-          <a href="#" class="btn btn-fb hide-on-med-and-up"><i class="fa fa-facebook-official" aria-hidden="true"></i> Iniciar sesion</a>
+          <a href="#" class="btn btn-fb hide-on-small-only">${ translate.message('signup.facebook') }</a>
+          <a href="#" class="btn btn-fb hide-on-med-and-up"><i class="fa fa-facebook-official" aria-hidden="true"></i> ${ translate.message('signup.text') }</a>
          </div>
          <div class="divider"></div>
          <div class="section">
-           <input type="email" name="email" placeholder="Correo Electronico">
-           <input type="text" name="name" placeholder="Nombre Completo">
-           <input type="text" name="username" placeholder="Nombre de Usuario">
-           <input type="password" name="password" placeholder="Contraseña">
-           <button type="submit" class="btn waves-effect waves-light btn-signup">Registrate</button>
+           <input type="email" name="email" placeholder="${ translate.message('email') }">
+           <input type="text" name="name" placeholder="${ translate.message('fullname') }">
+           <input type="text" name="username" placeholder="${ translate.message('username') }">
+           <input type="password" name="password" placeholder="${ translate.message('password') }">
+           <button type="submit" class="btn waves-effect waves-light btn-signup">${ translate.message('signup.call-to-action') }</button>
          </div>
        </form>
      </div>
    </div>
    <div class="row">
      <div class="login-box">
-       ¿Tienes una cuenta? <a href="/signin">Entrar</a>
+       ${ translate.message('signup.have-account') } <a href="/signin">${ translate.message('signin') }</a>
      </div>
    </div>
  </div>`;
 
 module.exports = landing(box);
 
-},{"../landing":45,"yo-yo":40}],52:[function(require,module,exports){
+},{"../landing":45,"../translate":54,"yo-yo":40}],52:[function(require,module,exports){
 module.exports = {
-  'likes': '{likes, plural, ' + '=1 {# like}' + 'other {# likes}}'
+  'likes': '{likes, plural, ' + '=1 {# like}' + 'other {# likes}}',
+  'logout': 'Logout',
+  'english': 'English',
+  'spanish': 'Spanish',
+  'signup.subheading': 'Sign in and watch your friends\' pictures on Gram',
+  'signup.facebook': 'Sign in with Facebook',
+  'signup.text': 'Sign in',
+  'email': 'Email',
+  'username': 'Username',
+  'fullname': 'Fullname',
+  'password': 'Password',
+  'signup.call-to-action': 'Sign up',
+  'signup.have-account': 'Already have an account?',
+  'signin': 'Sign in',
+  'signin.not-have-account': 'Don\'t have an account?',
+  'language': 'Language'
 };
 
 },{}],53:[function(require,module,exports){
 module.exports = {
-  'likes': '{likes, number} me gusta'
+  'likes': '{likes, number} me gusta',
+  'logout': 'Salir',
+  'english': 'Ingles',
+  'spanish': 'Español',
+  'signup.subheading': 'Regístrate para ver fotos de tus amigos en Gram',
+  'signup.facebook': 'Iniciar sesión con Facebook',
+  'signup.text': 'Iniciar sesión',
+  'email': 'Correo electronico',
+  'username': 'Nombre de usuario',
+  'fullname': 'Nombre completo',
+  'password': 'Contraseña',
+  'signup.call-to-action': 'Regístrate',
+  'signup.have-account': '¿Tienes una cuenta?',
+  'signin': 'Entrar',
+  'signin.not-have-account': '¿Aun no tienes una cuenta?',
+  'language': 'Idioma'
 };
 
 },{}],54:[function(require,module,exports){

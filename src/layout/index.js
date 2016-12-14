@@ -15,7 +15,7 @@ module.exports = function layout(content) {
                   <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                 </a>
                 <ul id="drop-user" class="dropdown-content">
-                  <li><a href="#">Salir</a></li>
+                  <li><a href="#">${translate.message('logout')}</a></li>
                 </ul>
               </div>
             </div>
