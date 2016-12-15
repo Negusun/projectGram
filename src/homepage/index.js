@@ -5,52 +5,21 @@ var page = require('page');
 var main = $('#main-container');
 var template = require('./template');
 var title = require('title');
+var request = require('superagent');
+var header = require('../header');
 
-page('/', function(ctx, next){
+page('/', header, loadPictures, function(ctx, next){
   title('Gram - Home');
 
-  var pictures = [
-    {
-      'user': {
-        'username': 'Negusun',
-        'avatar': 'https://instagram.fscl8-1.fna.fbcdn.net/t51.2885-19/s150x150/15258639_149039972244650_5598047879546535936_a.jpg'
-      },
-      'url': 'office.jpg',
-      'likes': 1,
-      'liked': true,
-      'createdAt': new Date()
-    },
-    {
-      'user': {
-        'username': 'Negusun',
-        'avatar': 'https://instagram.fscl8-1.fna.fbcdn.net/t51.2885-19/s150x150/15258639_149039972244650_5598047879546535936_a.jpg'
-      },
-      'url': 'office.jpg',
-      'likes': 0,
-      'liked': false,
-      'createdAt': new Date().setDate(new Date().getDate()-10)
-    },
-    {
-      'user': {
-        'username': 'Negusun',
-        'avatar': 'https://instagram.fscl8-1.fna.fbcdn.net/t51.2885-19/s150x150/15258639_149039972244650_5598047879546535936_a.jpg'
-      },
-      'url': 'office.jpg',
-      'likes': 5,
-      'liked': true,
-      'createdAt': new Date(new Date().getDate()-5)
-    },
-    {
-      'user': {
-        'username': 'Negusun',
-        'avatar': 'https://instagram.fscl8-1.fna.fbcdn.net/t51.2885-19/s150x150/15258639_149039972244650_5598047879546535936_a.jpg'
-      },
-      'url': 'office.jpg',
-      'likes': 34,
-      'liked': true,
-      'createdAt': new Date(new Date().getDate()-13)
-    }
-  ];
-
-  main.empty().append(template(pictures));
+  main.empty().append(template(ctx.pictures));
 });
+
+function loadPictures(ctx, next){
+  request
+    .get('/api/pictures')
+    .end(function(err, res){//por convencion un callback que puede fallar siempre tiene como primer parametro el error
+      if(err) return console.log(err);//salvamos erro si no viene null se imprime en la consola
+      ctx.pictures = res.body;//setiar en el contexto la respuesta en este caso las fotos
+      next();
+    })
+}

@@ -13,18 +13,47 @@ app.use(express.static('public'));
  * uno de respuesta y otro de requerimiento
  */
 app.get('/', function(rec, res){
-  //respuesta para la ruta / renderizar el index.pug
   res.render('index', {title: 'Gram - Home'});
 });
 
 app.get('/signup', function(rec, res){
-  //respuesta para la ruta / renderizar el index.pug
   res.render('index', {title: 'Gram - Sign Up'});
 });
 
 app.get('/signin', function(rec, res){
   //respuesta para la ruta / renderizar el index.pug
   res.render('index', {title: 'Gram - Sign In'});
+});
+
+app.get('/api/pictures', function (req, res) {
+
+  var pictures = [
+    {
+      'user': {
+        'username': 'Negusun',
+        'avatar': 'https://instagram.fscl8-1.fna.fbcdn.net/t51.2885-19/s150x150/15258639_149039972244650_5598047879546535936_a.jpg'
+      },
+      'url': 'office.jpg',
+      'likes': 5,
+      'liked': true,
+      'createdAt': null
+    },
+    {
+      'user': {
+        'username': 'Negusun',
+        'avatar': 'https://instagram.fscl8-1.fna.fbcdn.net/t51.2885-19/s150x150/15258639_149039972244650_5598047879546535936_a.jpg'
+      },
+      'url': 'office.jpg',
+      'likes': 0,
+      'liked': false,
+      'createdAt': null
+    }
+  ];
+
+  //esperar 2 segundos antes de enviar el array
+  setTimeout(function(){
+    res.send(pictures);
+  }, 2000);
 });
 
 /**

@@ -6,9 +6,9 @@ var page = require('page');
 require('moment/locale/es');
 moment.locale('es');*/
 
-  require('./homepage');
-  require('./signup');
-  require('./signin');
-  require('./footer');
+require('./homepage');
+require('./signup');
+require('./signin');
+require('./footer');
 
 page();

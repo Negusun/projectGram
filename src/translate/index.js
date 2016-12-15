@@ -1,15 +1,17 @@
 /*var moment = require('moment');*/
-if(!window.Intl){
-  //si Intl no esta definido en el objeto global va a requerir la libreria (safari)
+if(!window.Intl){  //si Intl no esta definido en el objeto global va a requerir la libreria (safari)
   window.Intl = require('Intl');
   //si el navegador no soporta Intl se necesita requerir los pollyfills de manera local
   require('intl/locale-data/jsonp/es.js');
+  require('intl/locale-data/jsonp/en-US.js');
 }
-//re querimos Intl-relative format para el formato de los Dato en el objeto global y de manera local
+//re querimos Intl-relative format para el formato de los Datos en el objeto global y de manera local
 var IntlRelativeFormat = window.IntlRelativeFormat = require('intl-relativeformat');
 var IntlMessageFormat = window.IntlMessageFormat = require('intl-messageFormat');
+
 //se requieren los idiomas desde locale
 require('intl-relativeformat/dist/locale-data/es.js');
+require('intl-relativeformat/dist/locale-data/en.js');
 
 var es = require('./es');
 var en = require('./en');
