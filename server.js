@@ -1,5 +1,7 @@
 //exportar express desde modules
 var express = require('express');
+var multer = require('multer');
+var upload = multer({dest:'uploads/'});
 var app = express();
 
 //setiar el motor de vistas pug para que renderice el html

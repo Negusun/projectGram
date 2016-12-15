@@ -7,7 +7,7 @@ module.exports = function (pics){
   var el = yo`<div class="container timeline">
   <div class="row">
     <div class="col s12 m10 offset-m1 l8 offset-l2 center-align">
-      <form enctype="multipart/form-data" class="form-upload" id="formUpload">
+      <form enctype="multipart/form-data" class="form-upload" id="formUpload" onsubmit=${onsubmit}>
         <div id="fileName" class="fileUpload btn btn-flat cyan">
           <span><i class="fa fa-camera" aria-hidden="true"></i> ${translate('upload-picture')}</span>
           <input name="picture" id="file" type="file" class="upload" onchange=${onchange} />
@@ -26,6 +26,18 @@ module.exports = function (pics){
     </div>
   </div>`;
   return layout(el);
+}
+
+function onsubmit(ev){
+  ev.preventDefault();//no se hara el request (action y ruta)
+  var data = new FormData($);//obtener la data del formulario
+  return fetch('/api/pictures',{method:'POST', body: data})
+    .then(function(res){
+      return res.json();
+    })
+    .catch(function (err){
+      console.log(err);
+    });
 }
 
 function toggleButtons(){
