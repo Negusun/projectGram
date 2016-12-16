@@ -2,6 +2,7 @@ var yo = require('yo-yo');
 var layout = require('../layout');
 var picture = require('../picture-card');
 var translate = require('../translate').message;
+var request = require('superagent');
 
 module.exports = function (pics){
   var el = yo`<div class="container timeline">
@@ -30,14 +31,13 @@ module.exports = function (pics){
 
 function onsubmit(ev){
   ev.preventDefault();//no se hara el request (action y ruta)
-  var data = new FormData($);//obtener la data del formulario
-  return fetch('/api/pictures',{method:'POST', body: data})
-    .then(function(res){
-      return res.json();
+  var data = new FormData(this);//obtener la data del formulario
+  request
+    .post('/api/pictures')
+    .send(data)
+    .end(function (err, res){
+      console.log(arguments);
     })
-    .catch(function (err){
-      console.log(err);
-    });
 }
 
 function toggleButtons(){

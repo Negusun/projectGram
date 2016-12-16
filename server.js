@@ -1,9 +1,20 @@
 //exportar express desde modules
 var express = require('express');
 var multer = require('multer');
-var upload = multer({dest:'uploads/'});
-var app = express();
+var ext = require('file-extension');
 
+var storage = multer.diskStorage({
+  destination: function (req, file, cb){
+    cb(null, './uploads')
+  },
+  filename: function (req, file, cb){
+    cb(null, +Date.now()+'.'+ext(file.originalname))
+  }
+});
+
+var upload = multer({ dest: './uploads/' });
+var upload = multer({ storage: storage }).single('picture');
+var app = express();
 //setiar el motor de vistas pug para que renderice el html
 app.set('view engine', 'pug');
 
@@ -38,7 +49,7 @@ app.get('/api/pictures', function (req, res) {
       'url': 'office.jpg',
       'likes': 5,
       'liked': true,
-      'createdAt': null
+      'createdAt': Date.now()
     },
     {
       'user': {
@@ -48,7 +59,7 @@ app.get('/api/pictures', function (req, res) {
       'url': 'office.jpg',
       'likes': 0,
       'liked': false,
-      'createdAt': null
+      'createdAt': Date.now()
     }
   ];
 
@@ -57,6 +68,15 @@ app.get('/api/pictures', function (req, res) {
     res.send(pictures);
   }, 2000);
 });
+
+app.post('/api/pictures', function (req, res){
+  upload( req, res, function (err){
+    if(err){
+      return res.send(500, "Error uploading file");
+    }
+    res.send('File uploaded');
+  })
+})
 
 /**
  * lanzar servidor web
